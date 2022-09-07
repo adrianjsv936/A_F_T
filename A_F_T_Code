@@ -1,0 +1,52 @@
+import math
+numeros = []
+numeros2 = []
+a = 1
+while(a<=100):
+   a = a+1
+   numeros.append(a)
+   numeros2.append(a)
+def prim(numeros):
+  primos = []
+  for x in range(0,len(numeros)):
+    divisores = []
+    for y in range(0,len(numeros2)):
+      res = numeros[x]%numeros2[y]
+      if res==0:
+        #print(numeros[x], numeros2[y]) 
+        #print(res)
+        divisores.append(numeros2[y])
+    #print(divisores)
+    if len(divisores)==1:
+      primos.append(numeros[x])
+  return primos
+
+primos = prim(numeros)
+#print(primos)
+
+def f(numeros):
+ A_F_T = []
+ for x in range(2,len(numeros)):
+  fp = []
+  pm = []
+  prim = (numeros[x])
+  for x1 in range(0,len(primos)):
+   if primos[x1] <= prim:
+     pm.append(primos[x1])
+  div = numeros[x]
+  #print(numeros[x], pm, div)
+  for x2 in range(0,len(pm)):
+    res = div%pm[x2]
+    div = div/pm[x2]
+    #print(numeros[x], div, res)
+    while res == 0:
+      while div >= 1:
+        res = div%pm[x2]
+        div = div/pm[x2]
+        fp.append(pm[x2])
+        #print(numeros[x],fp)
+    else:
+      div = numeros[x]
+  print(numeros[x],fp)
+ return A_F_T
+A_F_T = f(numeros)
